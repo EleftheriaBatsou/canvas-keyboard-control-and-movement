@@ -1,0 +1,77 @@
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+
+  var bg = new Image();
+bg.src = "https://images.pexels.com/photos/30773/pexels-photo-30773.jpg?h=350&auto=compress&cs=tinysrgb";
+function initCanvas(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+    var cW = ctx.canvas.width, cH = ctx.canvas.height;
+    var dist = 3;
+    function Background(){
+        this.x = 0, this.y = 0, this.w = bg.width, this.h = bg.height;
+        this.render = function(){
+            ctx.drawImage(bg, this.x--, 0);
+            if(this.x <= -499){
+                this.x = 0;
+            }
+        }
+    }
+    function Player(){
+        this.x = 0, this.y = 0, this.w = 50, this.h = 50;
+        ctx.fillStyle = "orange";
+        this.render = function(){
+            ctx.fillRect(this.x, this.y, this.w, this.h);
+        }
+    }
+    var background = new Background();
+    var player = new Player();
+    player.x = 100;
+    player.y = 225;
+    function animate(){
+        //ctx.save();
+        ctx.clearRect(0, 0, cW, cH);
+        // Start drawing here
+        background.render();
+        player.render();
+        // End drawing here
+        //ctx.restore();
+    }
+    var animateInterval = setInterval(animate, 30);
+	
+    document.addEventListener('keydown', function(event) {
+        var key_press = String.fromCharCode(event.keyCode);
+        //alert(event.keyCode+" | "+key_press);
+        if(key_press == "W"){
+            player.y-=dist;
+        } else if(key_press == "S"){
+            player.y+=dist;
+        } else if(key_press == "A"){
+            player.x-=dist;
+        }  else if(key_press == "D"){
+            player.x+=dist;
+        }
+    });
+
+}
+window.addEventListener('load', function(event) {
+    initCanvas();
+});
+  
+</script>
+</head>
+<body>
+  
+  <h3 style="text-align: center">Canvas | Keyboard Control and Movement</h3>
+  <h4 style="text-align: center">Press: W, A, S, D to move</h4>
+  
+<div id="canvas_container">
+  <canvas id="my_canvas" width="800" height="300"></canvas></div>
+
+  <div>
+    <h5 style="text-align: center"><a href="http://www.eleftheriabatsou.com" target="_blank">Eleftheria Batsou</a> | <a href="http://codepen.io/EleftheriaBatsou" target="_blank">Projects</a></h5>
+  </div> <!-- end footer -->
+  
+</body>  
+</html>

@@ -1,0 +1,19 @@
+
+body{ 
+  margin:10px;
+  background:#666; 
+  color: orange;
+}
+a:link{color: orange}
+a:hover{color: blue}
+
+#canvas_container{ 
+  width:1000px; 
+  margin: 20px auto; 
+}
+
+#my_canvas{ 
+  background:#fff; 
+  color:#000; 
+  border:#00838F 1px solid; 
+}
